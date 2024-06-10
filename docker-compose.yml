@@ -22,19 +22,35 @@ services:
     networks:
       - my_network
 
-  mysql:
+  mysql_db1:
     image: mysql:latest
-    container_name: mysql_db
+    container_name: mysql_db1
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: rootpassword1
+      MYSQL_DATABASE: mydatabase1
+      MYSQL_USER: myuser1
+      MYSQL_PASSWORD: mypassword1
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data1:/var/lib/mysql
+    networks:
+      - my_network
+
+  mysql_db2:
+    image: mysql:latest
+    container_name: mysql_db2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword2
+      MYSQL_DATABASE: mydatabase2
+      MYSQL_USER: myuser2
+      MYSQL_PASSWORD: mypassword2
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data2:/var/lib/mysql
     networks:
       - my_network
 
@@ -49,7 +65,8 @@ services:
       - my_network
 
 volumes:
-  mysql_data:
+  mysql_data1:
+  mysql_data2:
 
 networks:
   my_network:
